@@ -1,3 +1,4 @@
-import UserLogin from "./UserLogin"
+import UserLogin from "./UserLogin";
+import UserDetailsBar from "./UserDetailsBar";
 
-export { UserLogin };
+export { UserDetailsBar, UserLogin };

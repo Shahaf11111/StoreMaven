@@ -27,6 +27,11 @@ export default function UserDetailsBar({ menu }: IMenuItemsProps) {
 
     const handleClose = () => {
         setAnchorEl(null);
+    }
+
+    const handleAction = (action: Function) => {
+        handleClose();
+        action();
     };
 
     const handleLogout = () => {
@@ -49,7 +54,7 @@ export default function UserDetailsBar({ menu }: IMenuItemsProps) {
                     </IconButton>
                     <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
                         {menu.map(({ title, action }) =>
-                            <MenuItem key={title} onClick={() => action()}>{title}</MenuItem>
+                            <MenuItem key={title} onClick={() => handleAction(action)}>{title}</MenuItem>
                         )}
                         <MenuItem key="Log Out" onClick={handleLogout}>Log Out</MenuItem>
                     </Menu>

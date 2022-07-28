@@ -1,25 +1,26 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
-import { Side } from '../../interfaces';
-import { error, success } from '../alert/alert.slice';
-import { score } from '../user/user.slice';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState, AppThunk } from "../../app/store";
+import { Side } from "../../interfaces";
+import { error, success } from "../alert/alert.slice";
+import { score } from "../user/user.slice";
+
 interface GameRound {
-    phase: 'idle' | 'run' | 'complete';
+    phase: "idle" | "run" | "complete";
     side: Side | null;
 }
 
 const initialState: GameRound = {
-    phase: 'idle',
+    phase: "idle",
     side: null,
 };
 
 export const gameRoundSlice = createSlice({
-    name: 'game-round',
+    name: "game-round",
     initialState,
     reducers: {
         idle: () => ({ ...initialState }),
-        run: (state) => ({ ...state, phase: 'run' }),
-        complete: (state) => ({ ...state, phase: 'complete' }),
+        run: (state) => ({ ...state, phase: "run" }),
+        complete: (state) => ({ ...state, phase: "complete" }),
         setSide: (state, action: PayloadAction<Side>) => ({ ...state, side: action.payload }),
     },
 });

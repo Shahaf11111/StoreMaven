@@ -1,17 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Api from '../../api';
-import { RootState, AppThunk } from '../../app/store';
-import { User } from '../../interfaces';
-import { info } from '../alert/alert.slice';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import api from "../../api";
+import { RootState, AppThunk } from "../../app/store";
+import { User } from "../../interfaces";
+import { error, info } from "../alert/alert.slice";
 
 const initialState: User = {
-  _id: '',
-  username: '',
+  _id: "",
+  username: "",
   score: 0,
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setUserId: (state, action: PayloadAction<string>) => ({ ...state, _id: action.payload }),
@@ -32,7 +32,7 @@ export const login =
       if (currentUser.username) {
         return;
       }
-      const { data, message } = await Api.signUpOrLogIn(username);
+      const { data, message } = await api.signUpOrLogIn(username);
       if (data) {
         dispatch(setUserId(data._id));
         dispatch(setUsername(data.username));
@@ -51,11 +51,11 @@ export const score =
     async (dispatch, getState) => {
       const currentUser = selectUser(getState());
       if (currentUser.username) {
-        const { data, message } = await Api.score(currentUser.username);
+        const { data, message } = await api.score(currentUser.username);
         if (data) {
           dispatch(setScore(data));
         } else {
-          alert(message);
+          dispatch(error(message));
         }
       }
     };

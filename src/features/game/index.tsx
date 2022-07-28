@@ -25,7 +25,7 @@ export default function Game() {
         <Box>
             {phase === "idle" && <Countdown />}
             {phase === "run" && <GameBoard />}
-            {phase === "complete" && <Countdown />}
+            {phase === "complete" && <Countdown hidden timeout={1} />}
         </Box>
     );
 }

@@ -3,9 +3,13 @@ import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { nextPhase } from "./game.slice";
 
+interface CountdownProps {
+    timeout?: number;
+    hidden?: boolean;
+}
 
-export default function Countdown() {
-    const [timeLeft, setTimeLeft] = React.useState(Math.floor(Math.random() * 4) + 2);
+export default function Countdown({ hidden = false, timeout }: CountdownProps) {
+    const [timeLeft, setTimeLeft] = React.useState(timeout || Math.floor(Math.random() * 4) + 2);
     const dispatch = useAppDispatch();
 
     React.useEffect(() => {
@@ -22,13 +26,8 @@ export default function Countdown() {
     }, [timeLeft]);
 
     return (
-        <Box sx={{
-            height: 150,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        }}>
-            <Typography fontFamily="monospace" variant="h1">{timeLeft}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {hidden ? "" : <Typography fontFamily="monospace" variant="h1">{timeLeft}</Typography>}
         </Box>
     );
 }

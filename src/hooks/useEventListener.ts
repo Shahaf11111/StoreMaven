@@ -1,5 +1,5 @@
-import React, { RefObject } from 'react'
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
+import React, { RefObject } from "react";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 // Window Event based useEventListener interface
 function useEventListener<K extends keyof WindowEventMap>(
@@ -41,29 +41,29 @@ function useEventListener<
         options?: boolean | AddEventListenerOptions,
 ) {
     // Create a ref that stores handler
-    const savedHandler = React.useRef(handler)
+    const savedHandler = React.useRef(handler);
 
     useIsomorphicLayoutEffect(() => {
         savedHandler.current = handler
-    }, [handler])
+    }, [handler]);
 
     React.useEffect(() => {
         // Define the listening target
-        const targetElement: T | Window = element?.current || window
+        const targetElement: T | Window = element?.current || window;
         if (!(targetElement && targetElement.addEventListener)) {
-            return
+            return;
         }
 
         // Create event listener that calls handler function stored in ref
-        const eventListener: typeof handler = event => savedHandler.current(event)
+        const eventListener: typeof handler = event => savedHandler.current(event);
 
-        targetElement.addEventListener(eventName, eventListener, options)
+        targetElement.addEventListener(eventName, eventListener, options);
 
         // Remove event listener on cleanup
         return () => {
-            targetElement.removeEventListener(eventName, eventListener)
+            targetElement.removeEventListener(eventName, eventListener);
         }
-    }, [eventName, element, options])
+    }, [eventName, element, options]);
 }
 
 export default useEventListener;

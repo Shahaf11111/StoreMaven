@@ -1,27 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Api from '../../api';
-import { RootState, AppThunk } from '../../app/store';
-import { Side, User } from '../../interfaces';
-import { score } from '../user/user.slice';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState, AppThunk } from "../../app/store";
 
 interface Alert {
-    severity: 'info' | 'success' | 'error';
+    severity: "info" | "success" | "error";
     message: string | null;
 }
 
 const initialState: Alert = {
-    severity: 'success',
+    severity: "success",
     message: null,
 };
 
 export const gameRoundSlice = createSlice({
-    name: 'alert',
+    name: "alert",
     initialState,
     reducers: {
         hide: () => ({ ...initialState }),
-        info: (state, action: PayloadAction<string>) => ({ severity: 'info', message: action.payload }),
-        success: (state, action: PayloadAction<string>) => ({ severity: 'success', message: action.payload }),
-        error: (state, action: PayloadAction<string>) => ({ severity: 'error', message: action.payload }),
+        info: (state, action: PayloadAction<string>) => ({ severity: "info", message: action.payload }),
+        success: (state, action: PayloadAction<string>) => ({ severity: "success", message: action.payload }),
+        error: (state, action: PayloadAction<string>) => ({ severity: "error", message: action.payload }),
     },
 });
 
