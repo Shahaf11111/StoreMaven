@@ -36,3 +36,8 @@ export enum Side {
     left = "left",
     right = "right",
 }
+
+export interface Size {
+    width: number;
+    height: number;
+}

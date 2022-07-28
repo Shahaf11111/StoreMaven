@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Api from '../../api';
 import { RootState, AppThunk } from '../../app/store';
 import { User } from '../../interfaces';
+import { info } from '../alert/alert.slice';
 
 const initialState: User = {
-  _id: '62dceca246adb47c9e94dfe4',
-  username: 'shahaf',
+  _id: '',
+  username: '',
   score: 0,
 };
 
@@ -39,7 +40,7 @@ export const login =
       } else {
         dispatch(reset());
       }
-      alert(message);
+      dispatch(info(message));
     };
 
 export const logout = (): AppThunk => (dispatch) => { dispatch(reset()) };

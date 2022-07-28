@@ -1,13 +1,12 @@
 import { Box } from "@mui/material";
 import useEventListener from "../../hooks/useEventListener";
-import ShapeBoard from "./ShapeBoard";
+import GameBoard from "./GameBoard";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Side } from "../../interfaces";
 import { selectPhase, userInput } from "./game.slice";
-import RoundResults from "./RoundResults";
 import Countdown from "./Countdown";
 
-export default function GameRound() {
+export default function Game() {
     const phase = useAppSelector(selectPhase);
     const dispatch = useAppDispatch();
 
@@ -25,8 +24,8 @@ export default function GameRound() {
     return (
         <Box>
             {phase === "idle" && <Countdown />}
-            <ShapeBoard draw={phase === "run"} />
-            {phase === "complete" && <RoundResults />}
+            {phase === "run" && <GameBoard />}
+            {phase === "complete" && <Countdown />}
         </Box>
     );
 }

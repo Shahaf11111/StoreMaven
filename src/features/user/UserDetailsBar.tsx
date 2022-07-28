@@ -1,33 +1,15 @@
-// import React from "react";
-// import { AppBar, Avatar } from "@mui/material";
-// import { useAppSelector } from "../../app/hooks";
-// import { selectUser } from "./user.slice";
-
-// export default function UserDetailsBar() {
-
-//     const user = useAppSelector(selectUser);
-
-//     return (
-//         <AppBar>
-//             <Avatar>{user.username}</Avatar>
-//         </AppBar>
-//     );
-// };
-
-
-
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { logout, selectUser } from './user.slice';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { Avatar, Menu, MenuItem, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { IMenuItem } from '../../interfaces';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { logout, selectUser } from "./user.slice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { Avatar, Menu, MenuItem } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { IMenuItem } from "../../interfaces";
 
 interface IMenuItemsProps {
     menu: IMenuItem[];
@@ -49,16 +31,14 @@ export default function UserDetailsBar({ menu }: IMenuItemsProps) {
 
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/login');
+        navigate("/login");
     };
 
-    const handleNewGame = () => {
-        alert("new game");
-    };
-
-    const handleLeaderboard = () => {
-        alert("leaderboard");
-    };
+    React.useEffect(() => {
+        if (!user.username) {
+            navigate("/");
+        }
+    }, []);
 
     return (
         <Box sx={{ maxHeight: "10vh", flexGrow: 1 }}>

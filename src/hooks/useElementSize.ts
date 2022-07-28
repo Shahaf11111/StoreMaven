@@ -1,12 +1,7 @@
 import React from 'react';
+import { Size } from '../interfaces';
 import useEventListener from './useEventListener';
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
-
-
-interface Size {
-    width: number;
-    height: number;
-}
 
 function useElementSize<T extends HTMLElement = HTMLDivElement>(): [
     (node: T | null) => void,

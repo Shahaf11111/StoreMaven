@@ -1,14 +1,22 @@
 import { Box } from "@mui/material";
-import GameRound from "../../features/game";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
+import Game from "../../features/game";
+import { logout } from "../../features/user/user.slice";
 import UserDetailsBar from "../../features/user/UserDetailsBar";
 import { IMenuItem } from "../../interfaces";
 
 export default function GamePage() {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const menu: IMenuItem[] = [
         {
-            title: "New Game",
-            action: () => console.log('new game'),
+            title: "Switch User",
+            action: () => {
+                dispatch(logout());
+                navigate("/");
+            },
         },
         {
             title: "Leaderboard",
@@ -19,7 +27,7 @@ export default function GamePage() {
     return (
         <Box>
             <UserDetailsBar menu={menu} />
-            <GameRound />
+            <Game />
         </Box>
     );
 }
