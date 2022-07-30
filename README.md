@@ -9,8 +9,8 @@
 
 ## Quickstart
 
-1. Clone this repo: `git clone https://github.com/Shahaf11111/StoreMaven.git`
-2. Run `setup.dat` executable.
-3. Start frontend app: `cd frontend && npm start`
+1. Clone this repo: `git clone https://github.com/Shahaf11111/StoreMaven.git`.
+2. Run `setup.bat` executable inside local repo directory.
+3. Start frontend app: `cd frontend && npm start`.
 4. Go back to project base directory.
-5. Start backend app: `cd backend && npm start`
+5. Start backend app: `cd backend && npm start`.
