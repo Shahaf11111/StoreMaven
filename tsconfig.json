@@ -29,7 +29,7 @@
     "include": [
         "src/**/*.ts",
         "src/**/*.json",
-        ".env"
+        ".env.production.local"
     ],
     "exclude": [
         "node_modules"
