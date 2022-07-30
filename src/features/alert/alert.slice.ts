@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
+
+import { AppThunk, RootState } from "../../app/store";
 
 interface Alert {
-    severity: "info" | "success" | "error";
+    severity: "info" | "success" | "error" | undefined;
     message: string | null;
 }
 
 const initialState: Alert = {
-    severity: "success",
+    severity: undefined,
     message: null,
 };
 

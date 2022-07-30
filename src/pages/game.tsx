@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Game from "../features/game";
 import Leaderboard from "../features/leaderboard";

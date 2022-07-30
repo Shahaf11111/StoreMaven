@@ -1,13 +1,14 @@
+import { Box } from "@mui/material";
 import * as React from "react";
 import * as Konva from "react-konva";
-import { Box } from "@mui/material";
-import ShapeFactory from "./shapes";
+
+import { useAppDispatch } from "../../app/hooks";
 import useEventListener from "../../hooks/useEventListener";
 import useTimeout from "../../hooks/useTimeout";
-import { useAppDispatch } from "../../app/hooks";
-import { nextPhase, setSide } from "./game.slice";
 import { Size } from "../../interfaces";
 import { error } from "../alert/alert.slice";
+import { nextPhase, setSide } from "./game.slice";
+import ShapeFactory from "./shapes";
 
 export default function GameBoard() {
     const ref = React.useRef<HTMLElement>(null);
@@ -40,7 +41,7 @@ export default function GameBoard() {
     }, 1000);
 
     return (
-        <Box height="60vh" ref={ref} border={2}>
+        <Box height="inherit" ref={ref}>
             {size && (
                 <Konva.Stage height={size.height} width={size.width}>
                     <Konva.Layer>

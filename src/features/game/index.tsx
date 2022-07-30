@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
-import useEventListener from "../../hooks/useEventListener";
-import GameBoard from "./GameBoard";
+import React from "react";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import useEventListener from "../../hooks/useEventListener";
 import { Side } from "../../interfaces";
-import { selectPhase, userInput } from "./game.slice";
 import Countdown from "./Countdown";
+import { idle, selectPhase, userInput } from "./game.slice";
+import GameBoard from "./GameBoard";
 
 export default function Game() {
     const phase = useAppSelector(selectPhase);
@@ -19,10 +21,14 @@ export default function Game() {
         }
     }
 
+    React.useEffect(() => {
+        dispatch(idle());
+    }, []);
+
     useEventListener("keypress", handleKeyPress);
 
     return (
-        <Box>
+        <Box height="90vh">
             {phase === "idle" && <Countdown />}
             {phase === "run" && <GameBoard />}
             {phase === "complete" && <Countdown hidden timeout={1} />}
